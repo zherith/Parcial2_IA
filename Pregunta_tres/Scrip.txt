@@ -1,0 +1,76 @@
+do
+$$
+DECLARE 
+	cadena1 VARCHAR(20);
+	cadena2 VARCHAR(20);
+
+	mat VARCHAR[];
+	mat2 VARCHAR[];
+	mat3 VARCHAR[];
+	mat_limpia VARCHAR[];
+
+	longitud_cadena INT;
+	longitud_cadena2 INT;
+	long_array INT;
+	long_array2 INT;
+	long_array3 INT;
+	similitud INT;
+	res NUMERIC(10,5);
+BEGIN
+	--obtenemos los nombres de la tabla est y la longitud de la matriz
+	mat:=(select ARRAY (select nombre from est));
+	select array_length(mat, 1) into long_array;
+	FOR i IN 1..long_array-1 LOOP
+		--obtenemos todos los caracteres y se los almacena en la matriz
+		--primero obtenemos el tamaño del caracter
+		mat2:=mat_limpia;
+		select char_length(mat[i]) into longitud_cadena;
+		--obtenemos cada caracter de los nombres y se los almacena en una matriz
+		FOR a in 1..longitud_cadena LOOP
+			cadena1:=(select substring(mat[i] from a for 1));	
+			mat2:=mat2||cadena1;
+		END LOOP;
+		raise notice 'Nombre comparado   %', mat[i];	
+		--ahora en un nuevo for lo hacemos compara nombre por nombre
+		
+		FOR l IN (i+1)..long_array LOOP
+			--se vuelve a obtener los caracteres de los nombres comparados
+			raise notice 'nombre a comparar  %', mat[l];
+			mat3:=mat_limpia;
+			select char_length(mat[l]) into longitud_cadena2;
+			FOR a in 1..longitud_cadena2 LOOP
+				cadena1:=(select substring(mat[l] from a for 1));	
+				mat3:=mat3||cadena1;
+			
+			END LOOP;
+			--se compara letra por letra y se lo acumula
+			select array_length(mat2, 1) into long_array2;
+			select array_length(mat3, 1) into long_array3;
+			similitud:=0;
+			res:=0;
+				
+			FOR x in 1..long_array2 LOOP
+			--ahora se procede a comparar caracter por caracter imprimiendo
+			--la salida de cada uno y su proximidad
+				FOR y in 1..long_array3 LOOP
+					if mat2[x]=mat3[y] then
+						similitud:=similitud+1;	
+						
+						EXIT;
+					end if;
+				END LOOP;
+			END LOOP;
+			res:=(similitud::NUMERIC(10,5)/long_array2::NUMERIC(10,5))::NUMERIC(10,5);
+			
+			raise notice 'La longitud del nombre comparado  es  %',long_array2 ;			
+			raise notice 'La suma de los caracteres comparados es  %',similitud ;			
+			raise notice 'la similitud de nombres es  %',res ;			
+			
+		END LOOP;
+		
+		
+	end LOOP;
+	
+END;
+$$
+LANGUAGE plpgsql

@@ -1,0 +1,106 @@
+    \documentclass[12pt,letter]{article}
+    \usepackage[utf8]{inputenc}
+    \usepackage{fontspec}
+    \usepackage{xltxtra}
+    \setmainfont{Comfortaa}
+    \usepackage{amsmath}
+    \usepackage{amsfonts}
+    \usepackage{amssymb}
+    \usepackage{float}
+    \usepackage{makeidx}
+    \usepackage{graphicx}
+    \usepackage{listings}
+    \usepackage{color}
+    \usepackage[none]{hyphenat}
+    \usepackage{fancyhdr}
+    \usepackage{titlesec}
+    \usepackage{imakeidx}
+    \usepackage{lscape}
+    \usepackage{makeidx}
+    \usepackage{graphicx}
+    \usepackage{color}
+    \usepackage{colortbl}
+    \usepackage{booktabs}
+    \usepackage{setspace} 
+    \usepackage{rotating} 
+    \usepackage{hyperref}
+     \usepackage[final]{pdfpages}
+    \usepackage[babel]{csquotes}
+    \usepackage[spanish]{babel}
+    \usepackage[style=apa]{biblatex}
+    \hypersetup{
+    colorlinks=true, %set true if you want colored links
+    linktoc=all,     %set to all if you want both sections and subsections linked
+    linkcolor=blue,  %choose some color if you want links to stand out
+    linktocpage,
+    colorlinks,}
+	\definecolor{gray97}{gray}{.97}
+	\definecolor{gray75}{gray}{.75}
+	\definecolor{gray45}{gray}{.45}
+	\usepackage{booktabs}
+	\usepackage{setspace} 
+	\usepackage{rotating} 
+	\usepackage{listings}
+	\usepackage{textcomp}
+	\lstset{
+	language=python,
+	framerule=0pt,
+	aboveskip=0.5cm,
+	framextopmargin=3pt,
+	framexbottommargin=3pt,
+	framexleftmargin=0.4cm,
+	framesep=0pt,
+	rulesep=.4pt,
+	backgroundcolor=\color{gray97},
+	rulesepcolor=\color{black},
+	%
+	stringstyle=\ttfamily,
+	showstringspaces = false,
+	basicstyle=\small\ttfamily,
+	commentstyle=\color{gray45},
+	keywordstyle=\bfseries,
+	%
+	numbers=left,
+	numbersep=15pt,
+	numberstyle=\tiny,
+	numberfirstline = false,
+	breaklines=true,
+		}
+
+    \usepackage[ocgcolorlinks]{ocgx2}
+    \usepackage[final]{pdfpages}
+    \usepackage[left=3cm, right=2.4cm, top=2.5cm, bottom=2.7cm]{geometry}%aqui estamos poniendo los limites
+    \renewcommand{\baselinestretch}{1.5}%esto es el interlineado 1.5 para nuestros textos
+    \renewcommand{\contentsname}{ÍNDICE GENERAL}%esto es para modificar el nombre del indice de contenidos
+    \renewcommand{\listfigurename}{ÍNDICE DE FIGURAS}%esto es para modificar el nombre del indice de figuras
+    \renewcommand{\listtablename}{ÍNDICE DE TABLAS}%esto es para modificar el nombre del indice de tablas
+    \renewcommand{\figurename}{{\bf FIGURA}}%con esto modificamos los nombres de las figuras en la leyenda
+    \renewcommand{\tablename}{{\bf TABLA}}%con esto modificamos los nombres de las tablas en la leyenda
+%    \renewcommand{\chaptername}{CAPÍTULO}
+    \renewcommand{\indexname}{ÍNDICE ALFABÉTICO}
+    \makeindex
+    
+\begin{document}
+\sloppy 
+\include{caratula}
+%a partir de aca vamos a ejecutar tipo de indice romano 
+\pagenumbering{Roman}%mayuscula y vamos a resetear el indice apartir de aca
+\setcounter{page}{1}%ahora podemos continuar con el formato establecido
+
+
+\newpage
+\setcounter{page}{2}
+
+
+
+\pagenumbering{arabic}
+
+
+\setcounter{section}{0}
+\newpage
+
+
+\include{introduccion}%introduccion 
+\newpage
+
+\end{document}
